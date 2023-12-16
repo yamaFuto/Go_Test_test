@@ -55,7 +55,7 @@ func (app *application) getTokenFromHeaderandVerify(w http.ResponseWriter, r *ht
 	// parse the token with our claims (we read into claims), using our secret (from the receiver)
 	// 1.tokenをparseしてclaimに格納 2.そこで手に入れたclaimを加工してtokenとしてfuncにわたす
 	// 3.そこでvalidateしてreturnとしてsecretKeyを手に入れる 4.そのkeyを利用してsignitureとheader.claimを照合
-	// 5.称号があっていたらclaimを返す
+	// 5.照合があっていたらclaimを返す
 	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
 		// validate the signing algorithm
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
